@@ -1,0 +1,226 @@
+/* Custom Properties / Color Palette */
+:root {
+  --brand-color: #2563eb;
+  --brand-hover: #1d4ed8;
+  --accent-color: #10b981;
+  --bg-color: #f8fafc;
+  --surface-color: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --border-color: #e2e8f0;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Theme Stretch Goal */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --brand-color: #3b82f6;
+    --brand-hover: #60a5fa;
+    --accent-color: #34d399;
+    --bg-color: #0f172a;
+    --surface-color: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --border-color: #334155;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+    --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+/* CSS Grid Dashboard Layout */
+.dashboard-container {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main";
+  min-height: 100vh;
+}
+
+/* Sidebar with Flexbox */
+.sidebar {
+  grid-area: sidebar;
+  background-color: var(--surface-color);
+  border-right: 1px solid var(--border-color);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.brand h2 {
+  color: var(--brand-color);
+  font-size: 1.5rem;
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.nav-item {
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-item:hover, .nav-item.active {
+  background-color: var(--brand-color);
+  color: #ffffff;
+}
+
+/* Header with Flexbox */
+.header {
+  grid-area: header;
+  background-color: var(--surface-color);
+  border-bottom: 1px solid var(--border-color);
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-greeting h1 {
+  font-size: 1.5rem;
+}
+
+.user-greeting p {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--brand-color);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* Main Content Area */
+.main-content {
+  grid-area: main;
+  padding: 2rem;
+}
+
+/* CSS Grid for Cards */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Card Styling & Flexbox Internal Alignment */
+.card {
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  outline: none;
+  /* Micro-interaction transition under 250ms */
+  transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* Micro-interactions: Hover and Keyboard Focus */
+.card:hover, .card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--brand-color);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-header h3 {
+  font-size: 1.125rem;
+}
+
+.amount {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+
+.budget {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+/* Badges */
+.badge {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-weight: 600;
+}
+
+.badge-success { background-color: rgba(16, 185, 129, 0.15); color: var(--accent-color); }
+.badge-warning { background-color: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+.badge-neutral { background-color: rgba(100, 116, 139, 0.15); color: var(--text-secondary); }
+.badge-primary { background-color: rgba(37, 99, 235, 0.15); color: var(--brand-color); }
+
+/* Responsive Layout Transition (< 768px) */
+@media (max-width: 768px) {
+  .dashboard-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+      "header"
+      "sidebar"
+      "main";
+  }
+
+  .sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 1.5rem;
+  }
+
+  .nav-menu {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
