@@ -3,31 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SpendWise - Personal Budget Tracker</title>
+    <title>SpendWise - Interactive Budget Tracker</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header class="navbar">
         <h1>SpendWise</h1>
-        <p>Smart Financial Tracking Made Simple</p>
+        <p>Interactive Personal Financial Management</p>
     </header>
 
     <main class="container">
+        <!-- Input Section -->
         <section class="card">
-            <h2>Budget & Expense Processor</h2>
-            <p>Click the button below to start the interactive budget calculator.</p>
-            <button id="start-btn" onclick="runSpendWise()">Start Budget Calculation</button>
+            <h2>Add New Expense</h2>
+            <form id="expense-form">
+                <div class="form-group">
+                    <label for="expense-name">Expense Description:</label>
+                    <input type="text" id="expense-name" placeholder="e.g., Groceries, Transport" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="expense-amount">Amount (KES):</label>
+                    <input type="number" id="expense-amount" placeholder="e.g., 2500" min="1" required>
+                </div>
+
+                <button type="submit" id="add-btn">Add Expense</button>
+            </form>
         </section>
 
+        <!-- Dashboard / Summary Section -->
         <section class="card results-card">
-            <h2>Calculated Summary</h2>
-            <div id="output-display">
-                <p><em>Press "Start Budget Calculation" or check your browser console (F12) to see results.</em></p>
+            <h2>Financial Dashboard</h2>
+            <div id="dashboard-summary">
+                <p><strong>Total Monthly Budget:</strong> KES <span id="display-budget">50000.00</span></p>
+                <p><strong>Total Expenses:</strong> KES <span id="display-total-expenses">0.00</span></p>
+                <p><strong>Remaining Balance:</strong> KES <span id="display-balance">50000.00</span></p>
+                <p><strong>Budget Status:</strong> <span id="display-status" class="status-good">Within Budget</span></p>
             </div>
+        </section>
+
+        <!-- Expense List Section -->
+        <section class="card">
+            <h2>Recorded Expenses</h2>
+            <ul id="expense-list">
+                <li><em>No expenses added yet. Use the form above to record your spending.</em></li>
+            </ul>
         </section>
     </main>
 
-    <!-- Link to JavaScript File -->
+    <!-- Link to Interactive JavaScript File -->
     <script src="script.js"></script>
 </body>
 </html>

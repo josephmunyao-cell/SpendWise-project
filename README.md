@@ -1,30 +1,28 @@
-# SpendWise - Personal Budget Tracker
+# SpendWise - Interactive Budget Tracker
 
 ## Description
-**SpendWise** is a personal financial management web application that transforms user financial inputs into structured budgeting insights. This core foundation implements interactive data processing, expense accumulation, remaining balance calculations, and budget utilization analysis.
+**SpendWise** is an interactive web application designed to help users track personal finances. This version introduces dynamic UI updates, user form interactions, array-based record collection, loop processing, and conditional financial evaluation.
 
-## JavaScript Concepts Implemented
-- **Variables & Data Types**: Utilized `const` and `let` to store numbers, strings, and booleans.
-- **User Input Collection**: Collected financial input dynamically using window prompt dialogs.
-- **Data Conversion & Sanitization**: Converted string input into numerical float values using `parseFloat()` and `isNaN()` validation.
-- **Arithmetic Calculations**: Computed sum total expenses, remaining net balance, and budget usage percentages.
-- **Reusable Functions**: Modularized program logic into custom functions to keep code maintainable and DRY (*Don't Repeat Yourself*).
-- **DOM Integration & Console Output**: Output formatted metrics to both the browser developer console and HTML container elements.
+## Improvements Made This Week
+- Replaced basic window prompts with a clean HTML input form.
+- Upgraded data handling from isolated variables to a dynamic JavaScript array (`expensesArray`).
+- Implemented loop iteration (`for` loops) to process multiple expenses and compute accumulated spending.
+- Added real-time DOM manipulation to update dashboard metrics and render list items instantly without reloading the page.
 
-## How Variables Are Used
-- **`const`**: Applied to immutable budget calculations such as `totalBudget`, `rentExpense`, `totalExpenses`, and `remainingBalance`.
-- **`let`**: Used for input values captured directly from user prompts prior to numeric parsing.
+## How Conditionals Are Used
+Conditional statements (`if`, `else if`, `else`) evaluate the user's remaining balance against their total monthly budget. Based on the evaluation, the application dynamically updates financial health statuses (`Within Budget`, `Warning: Low Balance`, or `Over Budget`).
 
-## How User Input Is Collected
-Inputs are captured using native browser `prompt()` prompts for monthly income/budget, housing costs, food, and utilities.
+## How Arrays Are Used to Store Data
+Instead of individual variables for each item, an array (`expensesArray`) stores structured expense objects containing unique IDs, names, and numeric amounts. This allows the application to dynamically scale as users add or accumulate records.
 
-## How Calculations Are Performed
-1. **Total Expenses**: `totalExpenses = rentExpense + foodExpense + utilitiesExpense`
-2. **Remaining Balance**: `remainingBalance = calculateBalance(totalBudget, totalExpenses)`
-3. **Budget Usage**: `budgetUsedPercent = (totalExpenses / totalBudget) * 100`
+## How the DOM Is Updated
+JavaScript DOM methods (`document.getElementById`, `document.createElement`, and `.textContent`) are used to read user inputs, inject dynamic list elements into the UI, and live-update financial metrics in the dashboard container.
 
-## Reusable Functions Overview
-- `parseInputNumber(input, fallbackValue)`: Sanitizes string inputs to prevent `NaN` arithmetic bugs.
-- `calculateBalance(totalBudget, totalExpenses)`: Computes available net funds after total expenditure.
-- `calculateUsagePercentage(totalExpenses, totalBudget)`: Calculates total spending percentage relative to monthly income.
-- `runSpendWise()`: Orchestrates user input collection, function invocations, console output logging, and DOM updates.
+## How User Interactions Are Handled Through Events
+An `addEventListener` listens for form submission events (`submit`). When clicked, it intercepts default browser reloads, sanitizes input data, pushes new records into the data array, and triggers dashboard re-calculations.
+
+## Challenges Encountered and Solutions
+- **Challenge:** Preventing negative or text-based inputs from throwing calculation errors.  
+- **Solution:** Implemented type validation (`isNaN()`, `parseFloat()`, and conditional range checks) to ensure only valid numbers are processed.
+- **Challenge:** Managing state when rendering dynamic lists.  
+- **Solution:** Cleared the container's inner HTML prior to looping through the array to prevent duplicate rendering entries.

@@ -1,75 +1,99 @@
 // ==========================================
-// SPENDWISE - JAVASCRIPT FOUNDATION
+// SPENDWISE - INTERACTIVE JAVASCRIPT LOGIC
 // ==========================================
 
-console.log("SpendWise JavaScript initialized successfully.");
+// Global Application State
+const totalMonthlyBudget = 50000; // Fixed starting budget for tracking
+let expensesArray = [];           // Array to store multiple expense records
 
-// Function 1: Convert user input string into a valid number
-function parseInputNumber(input, fallbackValue = 0) {
-    let parsed = parseFloat(input);
-    if (isNaN(parsed) || parsed < 0) {
-        return fallbackValue;
+// DOM Element References
+const expenseForm = document.getElementById("expense-form");
+const expenseNameInput = document.getElementById("expense-name");
+const expenseAmountInput = document.getElementById("expense-amount");
+const expenseListUl = document.getElementById("expense-list");
+
+const displayBudget = document.getElementById("display-budget");
+const displayTotalExpenses = document.getElementById("display-total-expenses");
+const displayBalance = document.getElementById("display-balance");
+const displayStatus = document.getElementById("display-status");
+
+// Initialize Display on Load
+displayBudget.textContent = totalMonthlyBudget.toFixed(2);
+updateDashboard();
+
+// Handle Form Submission via Event Listener
+expenseForm.addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent page reload
+
+    // Collect user input values
+    const name = expenseNameInput.value.trim();
+    const amount = parseFloat(expenseAmountInput.value);
+
+    // Validate inputs
+    if (name === "" || isNaN(amount) || amount <= 0) {
+        alert("Please enter a valid expense description and amount.");
+        return;
     }
-    return parsed;
-}
 
-// Function 2: Calculate remaining balance
-function calculateBalance(totalBudget, totalExpenses) {
-    return totalBudget - totalExpenses;
-}
+    // Create a new expense object record
+    const newExpense = {
+        id: Date.now(),
+        name: name,
+        amount: amount
+    };
 
-// Function 3: Calculate percentage of budget used
-function calculateUsagePercentage(totalExpenses, totalBudget) {
-    if (totalBudget <= 0) return 0;
-    return (totalExpenses / totalBudget) * 100;
-}
+    // Store record in the array
+    expensesArray.push(newExpense);
 
-// Main interactive function to prompt user and process financial data
-function runSpendWise() {
-    console.log("--- Starting SpendWise Calculation ---");
+    // Reset form fields
+    expenseNameInput.value = "";
+    expenseAmountInput.value = "";
 
-    // Collecting User Input via Prompts
-    let userMonthlyIncome = prompt("Enter your total monthly budget/income:", "50000");
-    let userRentExpense = prompt("Enter your housing/rent expenses:", "15000");
-    let userFoodExpense = prompt("Enter your food/groceries expenses:", "8000");
-    let userUtilitiesExpense = prompt("Enter your utilities & bills expenses:", "4000");
+    // Refresh dashboard UI and list
+    updateDashboard();
+});
 
-    // Storing and Parsing Application Data into Numbers
-    const totalBudget = parseInputNumber(userMonthlyIncome, 0);
-    const rentExpense = parseInputNumber(userRentExpense, 0);
-    const foodExpense = parseInputNumber(userFoodExpense, 0);
-    const utilitiesExpense = parseInputNumber(userUtilitiesExpense, 0);
+// Function to process records using loops and update the DOM dashboard
+function updateDashboard() {
+    let accumulatedExpenses = 0;
 
-    // Performing Budget Calculations
-    const totalExpenses = rentExpense + foodExpense + utilitiesExpense;
-    const remainingBalance = calculateBalance(totalBudget, totalExpenses);
-    const budgetUsedPercent = calculateUsagePercentage(totalExpenses, totalBudget);
+    // Clear current UI list element
+    expenseListUl.innerHTML = "";
 
-    // Display Results in Console with Clear Labels
-    console.log(`Total Monthly Budget: KES ${totalBudget.toFixed(2)}`);
-    console.log(`Total Expenses Breakdown:`);
-    console.log(`  - Rent: KES ${rentExpense.toFixed(2)}`);
-    console.log(`  - Food: KES ${foodExpense.toFixed(2)}`);
-    console.log(`  - Utilities: KES ${utilitiesExpense.toFixed(2)}`);
-    console.log(`Total Calculated Expenses: KES ${totalExpenses.toFixed(2)}`);
-    console.log(`Remaining Balance: KES ${remainingBalance.toFixed(2)}`);
-    console.log(`Budget Used: ${budgetUsedPercent.toFixed(1)}%`);
-
-    if (remainingBalance < 0) {
-        console.warn("Warning: You are over budget!");
+    if (expensesArray.length === 0) {
+        expenseListUl.innerHTML = "<li><em>No expenses added yet. Use the form above to record your spending.</em></li>";
     } else {
-        console.log("Great job! You are within your budget limits.");
+        // Process array records using a loop
+        for (let i = 0; i < expensesArray.length; i++) {
+            let currentExpense = expensesArray[i];
+            accumulatedExpenses += currentExpense.amount;
+
+            // Create list item dynamically
+            const listItem = document.createElement("li");
+            listItem.innerHTML = `
+                <span><strong>${currentExpense.name}</strong></span>
+                <span>KES ${currentExpense.amount.toFixed(2)}</span>
+            `;
+            expenseListUl.appendChild(listItem);
+        }
     }
 
-    // Display Results on Webpage Document
-    const displayDiv = document.getElementById("output-display");
-    if (displayDiv) {
-        displayDiv.innerHTML = `
-            <p><strong>Total Monthly Budget:</strong> KES ${totalBudget.toFixed(2)}</p>
-            <p><strong>Total Calculated Expenses:</strong> KES ${totalExpenses.toFixed(2)}</p>
-            <p><strong>Remaining Balance:</strong> KES ${remainingBalance.toFixed(2)}</p>
-            <p><strong>Budget Utilization:</strong> ${budgetUsedPercent.toFixed(1)}%</p>
-            <p><em>Status: ${remainingBalance < 0 ? "<span style='color:red;'>Over Budget</span>" : "<span style='color:green;'>Within Budget</span>"}</em></p>
-        `;
+    // Calculate remaining balance
+    const remainingBalance = totalMonthlyBudget - accumulatedExpenses;
+
+    // Update Text Content DOM properties
+    displayTotalExpenses.textContent = accumulatedExpenses.toFixed(2);
+    displayBalance.textContent = remainingBalance.toFixed(2);
+
+    // Implement Conditional Decision Making for Status feedback
+    if (remainingBalance < 0) {
+        displayStatus.textContent = "Over Budget! Deficit detected.";
+        displayStatus.className = "status-danger";
+    } else if (remainingBalance < (totalMonthlyBudget * 0.2)) {
+        displayStatus.textContent = "Warning: Low Balance (<20% remaining)";
+        displayStatus.className = "status-warning";
+    } else {
+        displayStatus.textContent = "Within Budget - Healthy Finances";
+        displayStatus.className = "status-good";
     }
 }

@@ -24,7 +24,7 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    max-width: 700px;
     margin: 2rem auto;
     padding: 0 1rem;
 }
@@ -42,6 +42,25 @@ body {
     margin-bottom: 1rem;
 }
 
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    color: #495057;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
 button {
     background-color: #2d6a4f;
     color: #ffffff;
@@ -52,6 +71,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    width: 100%;
 }
 
 button:hover {
@@ -62,6 +82,38 @@ button:hover {
     border-left: 5px solid #2d6a4f;
 }
 
-#output-display p {
+#dashboard-summary p {
+    margin-bottom: 0.6rem;
+    font-size: 1.05rem;
+}
+
+.status-good {
+    color: #2d6a4f;
+    font-weight: bold;
+}
+
+.status-warning {
+    color: #d97706;
+    font-weight: bold;
+}
+
+.status-danger {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+#expense-list {
+    list-style-type: none;
+    margin-top: 0.5rem;
+}
+
+#expense-list li {
+    background: #f8f9fa;
+    padding: 0.75rem 1rem;
     margin-bottom: 0.5rem;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 4px solid #40916c;
 }
