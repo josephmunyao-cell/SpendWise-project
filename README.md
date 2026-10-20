@@ -1,25 +1,30 @@
-# SpendWise Dashboard Shell
+# SpendWise - Personal Budget Tracker
 
-A responsive dashboard layout built using CSS Grid and Flexbox for the SpendWise capstone project.
+## Description
+**SpendWise** is a personal financial management web application that transforms user financial inputs into structured budgeting insights. This core foundation implements interactive data processing, expense accumulation, remaining balance calculations, and budget utilization analysis.
 
-## Project Structure
-- `index.html`: Contains the structural HTML markup for the dashboard layout, navigation menu, header, and six financial category cards.
-- `style.css`: Contains custom properties (`:root`), CSS Grid layout definitions, Flexbox alignments, responsive rules, micro-interactions, and dark mode support.
+## JavaScript Concepts Implemented
+- **Variables & Data Types**: Utilized `const` and `let` to store numbers, strings, and booleans.
+- **User Input Collection**: Collected financial input dynamically using window prompt dialogs.
+- **Data Conversion & Sanitization**: Converted string input into numerical float values using `parseFloat()` and `isNaN()` validation.
+- **Arithmetic Calculations**: Computed sum total expenses, remaining net balance, and budget usage percentages.
+- **Reusable Functions**: Modularized program logic into custom functions to keep code maintainable and DRY (*Don't Repeat Yourself*).
+- **DOM Integration & Console Output**: Output formatted metrics to both the browser developer console and HTML container elements.
 
-## Technical Details
+## How Variables Are Used
+- **`const`**: Applied to immutable budget calculations such as `totalBudget`, `rentExpense`, `totalExpenses`, and `remainingBalance`.
+- **`let`**: Used for input values captured directly from user prompts prior to numeric parsing.
 
-### 1. CSS Grid & Flexbox Usage
-- **CSS Grid**: Used for the macro dashboard structure (`grid-template-areas` separating sidebar, header, and main content) and for arranging category cards in a responsive multi-column grid (`repeat(auto-fit, minmax(280px, 1fr))`).
-- **Flexbox**: Used for micro-layouts inside components, such as the sidebar navigation list, header user section, and internal alignment inside category cards.
+## How User Input Is Collected
+Inputs are captured using native browser `prompt()` prompts for monthly income/budget, housing costs, food, and utilities.
 
-### 2. Custom Properties (Theme Variables)
-All color values are declared as CSS variables under `:root` (`--brand-color`, `--accent-color`, `--bg-color`, `--surface-color`, `--text-primary`, `--text-secondary`), providing consistency across components.
+## How Calculations Are Performed
+1. **Total Expenses**: `totalExpenses = rentExpense + foodExpense + utilitiesExpense`
+2. **Remaining Balance**: `remainingBalance = calculateBalance(totalBudget, totalExpenses)`
+3. **Budget Usage**: `budgetUsedPercent = (totalExpenses / totalBudget) * 100`
 
-### 3. Responsive Design
-A `@media (max-width: 768px)` breakpoint stacks the grid layout into a single column. The sidebar shifts below the header, transforming navigation items into a horizontally scrollable bar.
-
-### 4. Micro-interactions
-Category cards feature a `200ms` CSS transition on hover and `:focus-visible` states using `transform: translateY(-4px)` and `box-shadow` elevation adjustments.
-
-### 5. Dark Theme (Stretch Goal)
-Included system-driven dark mode support using `@media (prefers-color-scheme: dark)`, overriding root variable colors seamlessly without modifying HTML layout elements.
+## Reusable Functions Overview
+- `parseInputNumber(input, fallbackValue)`: Sanitizes string inputs to prevent `NaN` arithmetic bugs.
+- `calculateBalance(totalBudget, totalExpenses)`: Computes available net funds after total expenditure.
+- `calculateUsagePercentage(totalExpenses, totalBudget)`: Calculates total spending percentage relative to monthly income.
+- `runSpendWise()`: Orchestrates user input collection, function invocations, console output logging, and DOM updates.

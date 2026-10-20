@@ -1,111 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SpendWise Dashboard</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpendWise - Personal Budget Tracker</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="dashboard-container">
-    <!-- Sidebar Navigation -->
-    <aside class="sidebar">
-      <div class="brand">
-        <h2>SpendWise</h2>
-      </div>
-      <nav class="nav-menu">
-        <a href="#" class="nav-item active">Dashboard</a>
-        <a href="#" class="nav-item">Analytics</a>
-        <a href="#" class="nav-item">Transactions</a>
-        <a href="#" class="nav-item">Budgets</a>
-        <a href="#" class="nav-item">Settings</a>
-      </nav>
-    </aside>
-
-    <!-- Header Section -->
-    <header class="header">
-      <div class="user-greeting">
-        <h1>Welcome Back, Alex</h1>
-        <p>Here is your monthly financial breakdown.</p>
-      </div>
-      <div class="user-profile">
-        <span class="user-name">Alex Morgan</span>
-        <div class="avatar">AM</div>
-      </div>
+    <header class="navbar">
+        <h1>SpendWise</h1>
+        <p>Smart Financial Tracking Made Simple</p>
     </header>
 
-    <!-- Main Content Area with Category Cards -->
-    <main class="main-content">
-      <div class="cards-grid">
-        
-        <article class="card" tabindex="0">
-          <div class="card-header">
-            <h3>Food & Dining</h3>
-            <span class="badge badge-warning">High</span>
-          </div>
-          <div class="card-body">
-            <p class="amount">$450.00</p>
-            <p class="budget">Budget: $500.00</p>
-          </div>
-        </article>
+    <main class="container">
+        <section class="card">
+            <h2>Budget & Expense Processor</h2>
+            <p>Click the button below to start the interactive budget calculator.</p>
+            <button id="start-btn" onclick="runSpendWise()">Start Budget Calculation</button>
+        </section>
 
-        <article class="card" tabindex="0">
-          <div class="card-header">
-            <h3>Transportation</h3>
-            <span class="badge badge-success">On Track</span>
-          </div>
-          <div class="card-body">
-            <p class="amount">$180.00</p>
-            <p class="budget">Budget: $250.00</p>
-          </div>
-        </article>
-
-        <article class="card" tabindex="0">
-          <div class="card-header">
-            <h3>Rent & Housing</h3>
-            <span class="badge badge-neutral">Fixed</span>
-          </div>
-          <div class="card-body">
-            <p class="amount">$1,200.00</p>
-            <p class="budget">Budget: $1,200.00</p>
-          </div>
-        </article>
-
-        <article class="card" tabindex="0">
-          <div class="card-header">
-            <h3>Entertainment</h3>
-            <span class="badge badge-success">On Track</span>
-          </div>
-          <div class="card-body">
-            <p class="amount">$95.00</p>
-            <p class="budget">Budget: $150.00</p>
-          </div>
-        </article>
-
-        <article class="card" tabindex="0">
-          <div class="card-header">
-            <h3>Savings</h3>
-            <span class="badge badge-primary">Goal</span>
-          </div>
-          <div class="card-body">
-            <p class="amount">$600.00</p>
-            <p class="budget">Target: $500.00</p>
-          </div>
-        </article>
-
-        <article class="card" tabindex="0">
-          <div class="card-header">
-            <h3>Utilities</h3>
-            <span class="badge badge-success">On Track</span>
-          </div>
-          <div class="card-body">
-            <p class="amount">$140.00</p>
-            <p class="budget">Budget: $200.00</p>
-          </div>
-        </article>
-
-      </div>
+        <section class="card results-card">
+            <h2>Calculated Summary</h2>
+            <div id="output-display">
+                <p><em>Press "Start Budget Calculation" or check your browser console (F12) to see results.</em></p>
+            </div>
+        </section>
     </main>
-  </div>
+
+    <!-- Link to JavaScript File -->
+    <script src="script.js"></script>
 </body>
 </html>
