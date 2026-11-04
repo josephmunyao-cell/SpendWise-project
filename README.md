@@ -1,28 +1,32 @@
-# SpendWise - Interactive Budget Tracker
+# SpendWise - Personal Finance & Expense Tracker
 
-## Description
-**SpendWise** is an interactive web application designed to help users track personal finances. This version introduces dynamic UI updates, user form interactions, array-based record collection, loop processing, and conditional financial evaluation.
+## Project Description
+SpendWise is an interactive web application designed to help users track their personal income, manage expenses, and monitor their financial budgets dynamically. Built with a responsive interface, it utilizes client-side JavaScript DOM manipulation and local storage to deliver a seamless budgeting experience.
 
-## Improvements Made This Week
-- Replaced basic window prompts with a clean HTML input form.
-- Upgraded data handling from isolated variables to a dynamic JavaScript array (`expensesArray`).
-- Implemented loop iteration (`for` loops) to process multiple expenses and compute accumulated spending.
-- Added real-time DOM manipulation to update dashboard metrics and render list items instantly without reloading the page.
+## Technologies Used
+- **HTML5**: Semantic document structure and layout.
+- **CSS3**: Custom styling, responsive layout design, and UI components.
+- **JavaScript (ES6+)**: Dynamic DOM manipulation, transaction calculations, and state management.
+- **Git & GitHub**: Version control and source code management.
+- **Netlify**: Cloud platform for continuous deployment and hosting.
 
-## How Conditionals Are Used
-Conditional statements (`if`, `else if`, `else`) evaluate the user's remaining balance against their total monthly budget. Based on the evaluation, the application dynamically updates financial health statuses (`Within Budget`, `Warning: Low Balance`, or `Over Budget`).
+## GitHub Repository Information
+- **Repository URL**: [https://github.com/josephmunyao-cell/spendwise](https://github.com/josephmunyao-cell/spendwise)
 
-## How Arrays Are Used to Store Data
-Instead of individual variables for each item, an array (`expensesArray`) stores structured expense objects containing unique IDs, names, and numeric amounts. This allows the application to dynamically scale as users add or accumulate records.
+## Live Netlify Website URL
+- **Live Application**: [https://spendwise-app.netlify.app](https://spendwise-app.netlify.app)
 
-## How the DOM Is Updated
-JavaScript DOM methods (`document.getElementById`, `document.createElement`, and `.textContent`) are used to read user inputs, inject dynamic list elements into the UI, and live-update financial metrics in the dashboard container.
+## Deployment Process Summary
+1. Organized project files into a clean flat root structure containing `index.html`, `style.css`, and `script.js`.
+2. Initialized a local Git repository, committed the files, and pushed them to a public GitHub repository named `spendwise`.
+3. Connected the GitHub repository to Netlify for automated static hosting.
+4. Updated the default Netlify subdomain to a custom meaningful site name (`spendwise-app`).
+5. Verified continuous deployment by pushing a test update to GitHub and confirming automatic rebuilds on Netlify.
 
-## How User Interactions Are Handled Through Events
-An `addEventListener` listens for form submission events (`submit`). When clicked, it intercepts default browser reloads, sanitizes input data, pushes new records into the data array, and triggers dashboard re-calculations.
+## Challenges Encountered During Deployment
+- Ensuring that asset paths (such as stylesheets and scripts) were correctly referenced relative to the root directory so Netlify could render the UI properly on production.
+- Managing git remote configurations and branch mapping cleanly during the initial linking phase.
 
-## Challenges Encountered and Solutions
-- **Challenge:** Preventing negative or text-based inputs from throwing calculation errors.  
-- **Solution:** Implemented type validation (`isNaN()`, `parseFloat()`, and conditional range checks) to ensure only valid numbers are processed.
-- **Challenge:** Managing state when rendering dynamic lists.  
-- **Solution:** Cleared the container's inner HTML prior to looping through the array to prevent duplicate rendering entries.
+## Lessons Learned
+- Learned how powerful continuous deployment pipelines are when connecting GitHub repositories directly to cloud hosting platforms like Netlify.
+- Gained hands-on experience in production environment verification, handling relative paths, and managing custom subdomains for web applications.
