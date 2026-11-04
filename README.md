@@ -14,7 +14,7 @@ SpendWise is an interactive web application designed to help users track their p
 - **Repository URL**: [https://github.com/josephmunyao-cell/spendwise](https://github.com/josephmunyao-cell/spendwise)
 
 ## Live Netlify Website URL
-- **Live Application**: [https://spendwise-app.netlify.app](https://spendwise-app.netlify.app)
+- **Live Application**:[https://joseph-spendwise.netlify.app](https://joseph-spendwise.netlify.app)
 
 ## Deployment Process Summary
 1. Organized project files into a clean flat root structure containing `index.html`, `style.css`, and `script.js`.
