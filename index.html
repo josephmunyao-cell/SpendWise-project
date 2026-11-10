@@ -3,55 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SpendWise - Interactive Budget Tracker</title>
+    <title>SpendWise - Personal Finance & Expense Tracker</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="navbar">
-        <h1>SpendWise</h1>
-        <p>Interactive Personal Financial Management</p>
+        <div class="nav-content">
+            <h1>SpendWise</h1>
+            <p>Smart Personal Financial Management</p>
+        </div>
     </header>
 
     <main class="container">
-        <!-- Input Section -->
-        <section class="card">
-            <h2>Add New Expense</h2>
-            <form id="expense-form">
-                <div class="form-group">
-                    <label for="expense-name">Expense Description:</label>
-                    <input type="text" id="expense-name" placeholder="e.g., Groceries, Transport" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="expense-amount">Amount (KES):</label>
-                    <input type="number" id="expense-amount" placeholder="e.g., 2500" min="1" required>
-                </div>
+        <section class="welcome-card">
+            <h2>Hello, Glad to have you here</h2>
+            <p>Track your spending, adjust your budget limits, and stay ahead of your financial goals.</p>
+        </section>
 
-                <button type="submit" id="add-btn">Add Expense</button>
+        <section class="card dashboard-card">
+            <h2>Financial Dashboard</h2>
+            <div id="dashboard-summary" class="metrics-grid">
+                <div class="metric-item">
+                    <span class="metric-label">Total Monthly Budget</span>
+                    <span class="metric-value">KES <span id="display-budget">0.00</span></span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">Total Expenses</span>
+                    <span class="metric-value expense-text">KES <span id="display-total-expenses">0.00</span></span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">Remaining Balance</span>
+                    <span class="metric-value balance-text">KES <span id="display-balance">0.00</span></span>
+                </div>
+            </div>
+            <div class="status-banner">
+                <strong>Status:</strong> <span id="display-status" class="status-warning">Please set your monthly budget</span>
+            </div>
+        </section>
+
+        <!-- Set Budget Section -->
+        <section class="card">
+            <h2>Configure Budget</h2>
+            <form id="budget-form" class="inline-form">
+                <div class="form-group">
+                    <label for="budget-input">Monthly Target (KES)</label>
+                    <input type="number" id="budget-input" placeholder="e.g., 50000" min="1" required>
+                </div>
+                <button type="submit" id="budget-btn" class="btn-secondary">Update Budget</button>
             </form>
         </section>
 
-        <!-- Dashboard / Summary Section -->
-        <section class="card results-card">
-            <h2>Financial Dashboard</h2>
-            <div id="dashboard-summary">
-                <p><strong>Total Monthly Budget:</strong> KES <span id="display-budget">50000.00</span></p>
-                <p><strong>Total Expenses:</strong> KES <span id="display-total-expenses">0.00</span></p>
-                <p><strong>Remaining Balance:</strong> KES <span id="display-balance">50000.00</span></p>
-                <p><strong>Budget Status:</strong> <span id="display-status" class="status-good">Within Budget</span></p>
-            </div>
+        <!-- Add Expense Section -->
+        <section class="card">
+            <h2>Record New Expense</h2>
+            <form id="expense-form">
+                <div class="form-group">
+                    <label for="expense-name">Expense Description</label>
+                    <input type="text" id="expense-name" placeholder="e.g., Groceries, Transport, Utilities" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="expense-amount">Amount (KES)</label>
+                    <input type="number" id="expense-amount" placeholder="e.g., 2500" min="1" required>
+                </div>
+
+                <button type="submit" id="add-btn" class="btn-primary">Add Expense</button>
+            </form>
         </section>
 
         <!-- Expense List Section -->
         <section class="card">
-            <h2>Recorded Expenses</h2>
+            <h2>Recent Transactions</h2>
             <ul id="expense-list">
-                <li><em>No expenses added yet. Use the form above to record your spending.</em></li>
+                <li><em>No expenses recorded yet. Use the form above to add your spending.</em></li>
             </ul>
         </section>
     </main>
 
-    <!-- Link to Interactive JavaScript File -->
     <script src="script.js"></script>
 </body>
 </html>
